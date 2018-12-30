@@ -9,3 +9,6 @@ gradle-app.setting
 
 example/*class
 example/*smali
+dist
+.DS_Store
+dist.zip
