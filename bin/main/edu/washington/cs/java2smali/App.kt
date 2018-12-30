@@ -13,6 +13,7 @@ object App {
     @JvmStatic
     fun main(args: Array<String>) {
         val javaPath = args[0]
+        val smaliPath = args[1]
         val compiler = ToolProvider.getSystemJavaCompiler()
         val classpath = System.getProperty("java.class.path")
         val optionList = listOf("-classpath", classpath)
@@ -28,22 +29,15 @@ object App {
             e.printStackTrace()
             exitProcess(-1)
         }
-        val javaFile = File(javaPath)
-        val javaDir = javaFile.parentFile
-        val javaNameExt = javaFile.name
-        val javaName = javaNameExt.substring(0, javaNameExt.lastIndexOf('.'))
-        val classFiles = javaDir.list { _, s -> s.startsWith(javaName) && s.endsWith(".class") }
-        for (classFile : String in classFiles) {
-            val classFilePath = javaDir.toString() + "/" + classFile
-            val tempFile = File.createTempFile("java2smali-", ".dex")
-            Class2Dex.dexClassFile(arrayOf(classFilePath), tempFile.absolutePath)
-            val tempDir = Files.createTempDirectory("java2smali-")
-            Dex2Smali.disassembleDexFile(tempFile.absolutePath, tempDir.toString())
-            val list = Files.walk(tempDir).filter { f -> Files.isRegularFile(f) }.collect(toList())
-            FileUtils.deleteQuietly(File(classFilePath))
-            FileUtils.copyFile(File(list[0].toString()), File(classFilePath.replace(".class", ".smali")))
-            FileUtils.deleteDirectory(tempDir.toFile())
-            tempFile.deleteOnExit()
-        }
+        val classPath = javaPath.replace(".java", ".class")
+        val tempFile = File.createTempFile("java2smali-", ".dex")
+        Class2Dex.dexClassFile(arrayOf(classPath), tempFile.absolutePath)
+        val tempDir = Files.createTempDirectory("java2smali-")
+        Dex2Smali.disassembleDexFile(tempFile.absolutePath, tempDir.toString())
+        val list = Files.walk(tempDir).filter { f -> Files.isRegularFile(f) }.collect(toList())
+        FileUtils.deleteQuietly(File(classPath))
+        FileUtils.copyFile(File(list[0].toString()), File(smaliPath))
+        FileUtils.deleteDirectory(tempDir.toFile())
+        tempFile.deleteOnExit()
     }
 }

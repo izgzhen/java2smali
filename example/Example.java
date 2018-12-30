@@ -1,10 +1,17 @@
-package edu.uw.cs.smalirewriter;
-
 import java.util.HashMap;
 
 public class Example {
+    public static class BaseClass {
+        public void Foo() {
+
+        }
+    }
+
+    public static class DerivedClass extends BaseClass {
+    }
+
     public static void example() {
-        HashMap<String, String> map = new HashMap<>();
-        map.put("", "");
+        DerivedClass o = new DerivedClass();
+        o.Foo();
     }
 }
