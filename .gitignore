@@ -1,0 +1,11 @@
+.gradle
+/build/
+
+gradle-app.setting
+
+!gradle-wrapper.jar
+
+.idea
+
+example/*class
+example/*smali
