@@ -1,3 +1,4 @@
+bin
 .gradle
 /build/
 
@@ -7,8 +8,8 @@ gradle-app.setting
 
 .idea
 
-example/*class
-example/*smali
+*.class
+*.smali
 dist
 .DS_Store
 dist.zip
@@ -16,4 +17,3 @@ dist.zip
 .settings
 .classpath
 .project
-

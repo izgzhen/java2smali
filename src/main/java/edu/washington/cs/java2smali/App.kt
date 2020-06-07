@@ -14,7 +14,11 @@ object App {
     fun main(args: Array<String>) {
         val javaPath = args[0]
         val compiler = ToolProvider.getSystemJavaCompiler()
-        val classpath = System.getProperty("java.class.path")
+        var classpath = System.getProperty("java.class.path")
+        val appClassPath = System.getenv("APP_CLASSPATH")
+        if (appClassPath != null) {
+            classpath = classpath + ":" + appClassPath
+        }
         val optionList = listOf("-classpath", classpath)
         try {
             val fileManager = compiler.getStandardFileManager(null, null, null)

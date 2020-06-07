@@ -13,6 +13,12 @@ Run (in Unix system):
 
 Then you should be able to find `*.smali` files in the `example/` directory.
 
+Another example run with imports (you must run this after the example run above):
+
+    APP_CLASSPATH=. ./java2smali example2/Example2.java
+
+Note that `Example2.java` import `example.Example`, so you must specify its class path directory.
+
 ### Related
 
 https://github.com/ollide/intellij-java2smali is a IntelliJ plugin.

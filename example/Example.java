@@ -1,3 +1,5 @@
+package example;
+
 import java.util.HashMap;
 
 public class Example {
