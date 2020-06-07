@@ -13,7 +13,7 @@ Run (in Unix system):
 
 Then you should be able to find `*.smali` files in the `example/` directory.
 
-Another example run with imports (you must run this after the example run above):
+Another example run with imports:
 
     APP_CLASSPATH=. ./java2smali example2/Example2.java
 
