@@ -12,3 +12,8 @@ example/*smali
 dist
 .DS_Store
 dist.zip
+
+.settings
+.classpath
+.project
+

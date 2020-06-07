@@ -11,6 +11,8 @@ Run (in Unix system):
 
     ./java2smali example/Example.java
 
+Then you should be able to find `*.smali` files in the `example/` directory.
+
 ### Related
 
 https://github.com/ollide/intellij-java2smali is a IntelliJ plugin.
