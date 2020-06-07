@@ -24,3 +24,7 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Run tests
+      run: |
+        ./java2smali example/Example.java
+        APP_CLASSPATH=. ./java2smali example2/Example2.java
